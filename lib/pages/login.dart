@@ -130,7 +130,18 @@ class LoginScreenState extends State<LoginScreen> {
                         passwordField,
                         SizedBox(height: 12.0),
                         submitButton,
-                        SizedBox(height: 12.0)
+                        SizedBox(height: 15.0),
+                        InkWell(
+                          child: Text(
+                            "Create a new account.", 
+                            style: TextStyle(
+                              decoration: TextDecoration.underline
+                            )
+                          ),
+                          onTap: () {
+                            Navigator.pushNamed(context, '/register');
+                          },
+                        )
                       ],
                     )
                   )

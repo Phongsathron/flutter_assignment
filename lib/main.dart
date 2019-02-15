@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
+import 'pages/register.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        '/second': (context) => FirstScreen()
+        '/second': (context) => FirstScreen(),
+        '/register': (context) => RegisterScreen()
       },
     );
   }
