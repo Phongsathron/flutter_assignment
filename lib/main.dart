@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
 import 'pages/register.dart';
+import 'pages/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        '/second': (context) => FirstScreen(),
+        '/home': (context) => HomeScreen(),
         '/register': (context) => RegisterScreen()
       },
     );
