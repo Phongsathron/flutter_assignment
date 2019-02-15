@@ -50,10 +50,22 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void _formErrorSnackbar(BuildContext context, String title){
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(title),
+      duration: Duration(seconds: 2),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+        },
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     // BuildContext context1;
-
+    BuildContext context1;
     TextFormField usernameField = TextFormField(
       style: TextStyle(color: Colors.black),
       decoration: _fieldDecoration('Username', Icons.person),
@@ -88,10 +100,10 @@ class LoginScreenState extends State<LoginScreen> {
           _formKey.currentState.save();
           print("${this.username} - ${this.password}");
           if (this.username.isEmpty && this.password.isEmpty) {
-            _formErrorDialog("เกิดข้อผิดพลาด", "กรุณาระบุ Username และ Password");
+            _formErrorSnackbar(context1, "กรุณาระบุ Username หรือ Password");
           }
           else if(this.username == "admin" && this.password == "admin"){
-            _formErrorDialog("เกิดข้อผิดพลาด", "Username หรือ Password ไม่ถูกต้อง");
+            _formErrorSnackbar(context1, "Username หรือ Password ไม่ถูกต้อง");
           }
         },
       )
@@ -100,6 +112,7 @@ class LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Builder(
         builder: (BuildContext context){
+          context1 = context;
           return Theme(
             data: Theme.of(context).copyWith(
                 primaryColor: Colors.pink[400],
