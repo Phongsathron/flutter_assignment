@@ -68,7 +68,7 @@ class LoginScreenState extends State<LoginScreen> {
         onPressed: () {
           _formKey.currentState.save();
           print("${this.username} - ${this.password}");
-          if (this.username.isEmpty && this.password.isEmpty) {
+          if (this.username.isEmpty || this.password.isEmpty) {
             Accounts.showSnackBar(context1, "กรุณาระบุ Username หรือ Password");
           }
           else if(this.username == "admin" && this.password == "admin"){

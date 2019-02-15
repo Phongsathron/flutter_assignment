@@ -32,7 +32,7 @@ class Accounts{
 
   static bool login(BuildContext context, String username, String password){
     if(!_account.containsKey(username)){
-      showSnackBar(context, "ไม่มีผู้ใช้นี้ิอยู่ในระบบ");
+      showSnackBar(context, "ไม่มีผู้ใช้นี้อยู่ในระบบ");
       return false;
     }
 
