@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'accounts.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -28,38 +29,6 @@ class LoginScreenState extends State<LoginScreen> {
         icon: Icon(icon, color: Colors.black),
         labelStyle: fieldLabelStyle
     );
-  }
-
-  void _formErrorDialog(String title, String content){
-    showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: Text(title),
-          content: Text(content),
-          actions: <Widget>[
-            FlatButton(
-              child: Text("ตกลง"),
-              onPressed: (){
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
-      }
-    );
-  }
-
-  void _formErrorSnackbar(BuildContext context, String title){
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(title),
-      duration: Duration(seconds: 2),
-      action: SnackBarAction(
-        label: 'Close',
-        onPressed: () {
-        },
-      ),
-    ));
   }
 
   @override
@@ -100,10 +69,15 @@ class LoginScreenState extends State<LoginScreen> {
           _formKey.currentState.save();
           print("${this.username} - ${this.password}");
           if (this.username.isEmpty && this.password.isEmpty) {
-            _formErrorSnackbar(context1, "กรุณาระบุ Username หรือ Password");
+            Accounts.showSnackBar(context1, "กรุณาระบุ Username หรือ Password");
           }
           else if(this.username == "admin" && this.password == "admin"){
-            _formErrorSnackbar(context1, "Username หรือ Password ไม่ถูกต้อง");
+            Accounts.showSnackBar(context1, "Username หรือ Password ไม่ถูกต้อง");
+          }
+          else{
+            if(Accounts.login(context1, username, password)){
+              Navigator.pushNamed(context, "/home");
+            }
           }
         },
       )

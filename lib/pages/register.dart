@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'accounts.dart';
 
 class RegisterScreen extends StatefulWidget{
   @override
@@ -16,6 +17,7 @@ class RegisterScreenState extends State<RegisterScreen>{
   
   @override
   Widget build(BuildContext context) {
+    BuildContext context1;
 
     TextFormField emailField = TextFormField(
       decoration: InputDecoration(
@@ -45,6 +47,18 @@ class RegisterScreenState extends State<RegisterScreen>{
       child: Text("Continue"),
       textColor: Colors.white,
       onPressed: (){
+        _formKey.currentState.save();
+        if(email.isEmpty || password.isEmpty || confirmPassword.isEmpty){
+          Accounts.showSnackBar(context1, "กรุณากรอกข้อมูลให้ครบถ้วน");
+        }
+        else if(password != confirmPassword){
+          Accounts.showSnackBar(context1, "ยืนยันรหัสผ่านไม่ถูกต้อง");
+        }
+        else{
+          if(Accounts.register(context1, email, password)){
+            Navigator.pushNamed(context, "/");
+          }
+        }
       },
     );
 
@@ -61,18 +75,23 @@ class RegisterScreenState extends State<RegisterScreen>{
       ),
       body: Form(
           key: _formKey,
-          child: Container(
-            decoration: new BoxDecoration(color: Colors.amber[200]),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-            child: Column(
-              children: <Widget>[
-                emailField,
-                passwordField,
-                passwordConfirmField,
-                SizedBox(height: 15),
-                submitButton
-              ],
-            ),
+          child: Builder(
+            builder: (BuildContext context){
+              context1 = context;
+              return Container(
+                decoration: new BoxDecoration(color: Colors.amber[200]),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                child: Column(
+                  children: <Widget>[
+                    emailField,
+                    passwordField,
+                    passwordConfirmField,
+                    SizedBox(height: 15),
+                    submitButton
+                  ],
+                ),
+              );
+            }
           )
         )
     );
