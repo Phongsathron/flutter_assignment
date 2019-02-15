@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'accounts.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -83,6 +84,11 @@ class LoginScreenState extends State<LoginScreen> {
       )
     );
 
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Color(0xFFFFFF),
+      statusBarIconBrightness: Brightness.dark
+    ));
+    
     return Scaffold(
       body: Builder(
         builder: (BuildContext context){

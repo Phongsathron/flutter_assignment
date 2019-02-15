@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget{
   @override
@@ -56,9 +57,6 @@ class HomeScreenState extends State<HomeScreen>{
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Theme.of(context).primaryColor,
-          primaryColor: Colors.pink,
-          disabledColor: Colors.pink,
-          bottomAppBarColor: Colors.pink
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
