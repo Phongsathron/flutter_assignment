@@ -21,7 +21,8 @@ class RegisterScreenState extends State<RegisterScreen>{
 
     TextFormField emailField = TextFormField(
       decoration: InputDecoration(
-        labelText: "Email address"
+        labelText: "Email address",
+        icon: Icon(Icons.email)
       ),
       keyboardType: TextInputType.emailAddress,
       onSaved: (value) => this.email = value
@@ -29,7 +30,8 @@ class RegisterScreenState extends State<RegisterScreen>{
 
     TextFormField passwordField = TextFormField(
       decoration: InputDecoration(
-        labelText: "Password"
+        labelText: "Password",
+        icon: Icon(Icons.lock_outline)
       ),
       obscureText: true,
       onSaved: (value) => this.password = value
@@ -37,7 +39,8 @@ class RegisterScreenState extends State<RegisterScreen>{
 
     TextFormField passwordConfirmField = TextFormField(
       decoration: InputDecoration(
-        labelText: "Confirm password"
+        labelText: "Confirm password",
+        icon: Icon(Icons.lock_outline)
       ),
       obscureText: true,
       onSaved: (value) => this.confirmPassword = value
